@@ -44,6 +44,9 @@ public abstract class KuralDB extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
+
+                        Log.v(LOG_TAG, "DB construction started | new file creation for first time");
+
                         XmlPullParser kural = context.getResources().getXml(R.xml.kural);
                         XmlPullParser chapter = context.getResources().getXml(R.xml.chapter);
                         KuralDao kdao = KuralDB.getInstance(context).getKuralDao();
@@ -53,6 +56,10 @@ public abstract class KuralDB extends RoomDatabase {
                     }
                 })
                 .build();
+
+
+
+        Log.v(LOG_TAG, "DB build completed");
 
         return db;
     }
@@ -68,6 +75,8 @@ public abstract class KuralDB extends RoomDatabase {
             this.chapterDao = chapterDao;
             this.kuralXML = kuralXML;
             this.chapterXML = chapterXML;
+
+            Log.v(LOG_TAG, ""+this.getClass().getName()+" | build task constructed");
         }
 
         @Override
@@ -75,18 +84,30 @@ public abstract class KuralDB extends RoomDatabase {
             //TODO: implement kural xml parsers and write to DB
             XMLParser parser = new XMLParser();
             try{
-                kuralDao.insert((KuralEntry[]) toArray(parser.parseKural(kuralXML, XMLParser.KURAL)));
-                chapterDao.insert((ChapterEntry[]) toArray(parser.parseKural(chapterXML, XMLParser.ADHIKARAM)));
+
+                chapterDao.insert( toChapterArray(parser.parseKural(chapterXML, XMLParser.ADHIKARAM)));
+                kuralDao.insert( toKuralArray(parser.parseKural(kuralXML, XMLParser.KURAL)));
+                Log.v(LOG_TAG, ""+this.getClass().getName()+" | insert task completed");
             }catch (Exception e){
-                Log.v(LOG_TAG, "Exception thrown | "+e.toString());
+                Log.v(LOG_TAG, "Exception thrown Kural DB | "+e.toString());
             }
 
 
             return null;
         }
 
-        Object[] toArray(ArrayList list){
-            Object[] array = new Object[list.size()];
+        ChapterEntry[] toChapterArray(ArrayList<ChapterEntry> list){
+            ChapterEntry[] array = new ChapterEntry[list.size()];
+
+            for(int i =0; i<list.size(); i++){
+                array[i] = list.get(i);
+            }
+
+            return array;
+        }
+
+        KuralEntry[] toKuralArray(ArrayList<KuralEntry> list){
+            KuralEntry[] array = new KuralEntry[list.size()];
 
             for(int i =0; i<list.size(); i++){
                 array[i] = list.get(i);

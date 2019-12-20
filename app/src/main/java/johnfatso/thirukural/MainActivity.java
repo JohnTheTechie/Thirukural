@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button button_aram, button_porul, button_inbam, button_favourite;
 
+    Repository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        repository = new Repository(this.getApplication());
+
+        new Repository.DaoAsyncTask(repository.getKuralDao(), repository.getChapterDao()){
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                chapterDao.getChapterName(1);
+                return null;
+            }
+        }.execute();
 
     }
 
