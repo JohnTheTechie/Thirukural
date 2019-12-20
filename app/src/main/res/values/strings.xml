@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Thirukural</string>
+
+    <string name="main_button_aram">Virtue (Aram)</string>
+    <string name="main_button_porul">Wealth (Porul)</string>
+    <string name="main_button_inbam">Love (Inbam)</string>
+    <string name="main_button_favourite">Favourite Tagged</string>
+
+
+</resources>
