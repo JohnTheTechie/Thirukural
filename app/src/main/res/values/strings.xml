@@ -6,5 +6,9 @@
     <string name="main_button_inbam">Love (Inbam)</string>
     <string name="main_button_favourite">Favourite Tagged</string>
 
+    <string name="aram_topic">Canon of Virtue</string>
+    <string name="porul_topic">Canon of Wealth</string>
+    <string name="inbam_topic">Canon of Love</string>
 
+    <string name="favourites_topic">Tagged Kurals</string>
 </resources>

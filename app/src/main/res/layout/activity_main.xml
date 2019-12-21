@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/valluvarkottam_detailed_bg">
 
     <Button
         android:id="@+id/button_amin_aram_activity_start"
@@ -12,6 +13,8 @@
         android:layout_height="100dp"
         android:layout_marginEnd="40dp"
         android:text="@string/main_button_aram"
+        android:background="@drawable/button_format1"
+        style="@style/button_main_text_style"
         app:layout_constraintBottom_toTopOf="@+id/button_main_inbam_activity_start"
         app:layout_constraintEnd_toStartOf="@+id/button_main_porul_activity_start"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +25,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:text="@string/main_button_porul"
+        android:background="@drawable/button_format1"
+        style="@style/button_main_text_style"
         app:layout_constraintBottom_toTopOf="@+id/button_main_favourites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_amin_aram_activity_start"
@@ -34,6 +39,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:text="@string/main_button_inbam"
+        android:background="@drawable/button_format1"
+        style="@style/button_main_text_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_main_favourites"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +52,8 @@
         android:layout_height="100dp"
         android:layout_marginTop="40dp"
         android:text="@string/main_button_favourite"
+        android:background="@drawable/button_format1"
+        style="@style/button_main_text_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_main_inbam_activity_start"

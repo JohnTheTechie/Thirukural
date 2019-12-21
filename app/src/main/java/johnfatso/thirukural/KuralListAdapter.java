@@ -17,9 +17,11 @@ public class KuralListAdapter extends RecyclerView.Adapter<KuralListAdapter.Kura
     private final String LOG_TAG = "TAG";
 
     ArrayList<KuralEntry> kuralEntryList;
+    FavouriteUpdateListner listner;
 
-    public KuralListAdapter(ArrayList<KuralEntry> kuralEntryList) {
+    public KuralListAdapter(ArrayList<KuralEntry> kuralEntryList, FavouriteUpdateListner listner) {
         this.kuralEntryList = kuralEntryList;
+        this.listner = listner;
     }
 
 
@@ -49,6 +51,18 @@ public class KuralListAdapter extends RecyclerView.Adapter<KuralListAdapter.Kura
         else {
             holder.favourite_icon.setImageResource(android.R.drawable.btn_star_big_off);
         }
+
+        holder.favourite_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setClickable(false);
+                kuralEntryList.get(position).setFavourite(!isFavourite);
+                listner.onClick(holder.favourite_icon, position, isFavourite);
+                notifyItemChanged(position);
+            }
+        });
+
+
     }
 
     @Override
@@ -61,6 +75,7 @@ public class KuralListAdapter extends RecyclerView.Adapter<KuralListAdapter.Kura
         TextView kural_text;
         TextView kural_index_text;
         ImageView favourite_icon;
+
 
         public KuralViewHolder(@NonNull View itemView, TextView kural_text, TextView kural_index_text, ImageView favourite_icon) {
             super(itemView);

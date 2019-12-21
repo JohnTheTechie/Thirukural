@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content_frame"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_format1"
+    android:layout_margin="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_text_container"
@@ -13,18 +15,21 @@
         app:layout_constraintBottom_toBottomOf="@id/content_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/content_frame"
-        app:layout_constraintTop_toTopOf="@id/content_frame">
+        app:layout_constraintTop_toTopOf="@id/content_frame"
+        >
 
         <TextView
             android:id="@+id/text_kural"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:layout_margin="4dp"
             app:layout_constraintBottom_toTopOf="@id/text_kural_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/kural_text_style"/>
 
         <TextView
             android:id="@+id/text_kural_count"

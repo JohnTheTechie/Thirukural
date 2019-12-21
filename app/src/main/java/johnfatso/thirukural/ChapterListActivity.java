@@ -1,5 +1,6 @@
 package johnfatso.thirukural;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +27,8 @@ public class ChapterListActivity extends AppCompatActivity implements OnClickLis
 
     ArrayList<ChapterEntry> dataSet;
 
+    ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,22 @@ public class ChapterListActivity extends AppCompatActivity implements OnClickLis
         recyclerView.setLayoutManager(layoutManager);
 
         repository = new Repository(this.getApplication());
+
+        actionBar = getSupportActionBar();
+
+        switch (palIndex){
+            case 1:
+                actionBar.setTitle(R.string.aram_topic);
+                break;
+
+            case 2:
+                actionBar.setTitle(R.string.porul_topic);
+                break;
+
+            case 3:
+                actionBar.setTitle(R.string.inbam_topic);
+                break;
+        }
 
         new Repository.DaoAsyncTask(repository.getKuralDao(), repository.getChapterDao()){
             @Override
@@ -77,6 +96,7 @@ public class ChapterListActivity extends AppCompatActivity implements OnClickLis
 
         Intent intent = new Intent(this, KuralActivity.class);
         intent.putExtra("CHAPTER", dataSet.get(position).getChapterIndex());
+        intent.putExtra("CHAPTER_TITLE", dataSet.get(position).getChapter());
         intent.putExtra("FAV", false);
 
         startActivity(intent);

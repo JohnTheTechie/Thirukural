@@ -23,4 +23,7 @@ public interface KuralDao {
     @Query("Select * FROM table_kural WHERE `favourite`=:favourites ")
     KuralEntry[] getFavouriteKurals(boolean favourites);
 
+    @Query("UPDATE table_kural SET `favourite` = :favourite WHERE `verse_index` = :verse_index")
+    void updateFavourite(boolean favourite, int verse_index);
+
 }
