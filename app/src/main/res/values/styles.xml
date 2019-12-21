@@ -20,7 +20,7 @@
     </style>
 
     <style name="kural_text_style">
-        <item name="android:textSize">6pt</item>
+        <item name="android:textSize">9pt</item>
         <item name="android:textColor">#000010</item>
     </style>
 

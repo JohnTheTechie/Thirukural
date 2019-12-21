@@ -42,6 +42,7 @@ public class KuralListAdapter extends RecyclerView.Adapter<KuralListAdapter.Kura
         String index = ""+kuralEntryList.get(position).getVerseIndex();
         boolean isFavourite = kuralEntryList.get(position).isFavourite();
 
+        text = splitKural(text);
 
         holder.kural_text.setText(text);
         holder.kural_index_text.setText(index);
@@ -83,5 +84,26 @@ public class KuralListAdapter extends RecyclerView.Adapter<KuralListAdapter.Kura
             this.kural_index_text = kural_index_text;
             this.favourite_icon = favourite_icon;
         }
+    }
+
+    String splitKural(String kural){
+        String updatedSring = kural.trim();
+
+        String[] substrings = updatedSring.split(" ");
+        updatedSring = substrings[0];
+        int wordCount= substrings.length;
+
+        Log.v(LOG_TAG, "kural split into pieces : "+wordCount);
+
+        for(int i=1; i<wordCount; i++){
+            if(i == wordCount -3) updatedSring = updatedSring.concat("\n").concat(substrings[i]);
+            else updatedSring = updatedSring.concat(" ").concat(substrings[i]);
+
+            Log.v(LOG_TAG, "concatenated base :"+updatedSring+" with substring :"+substrings[i]);
+        }
+
+        Log.v(LOG_TAG, "kural revamped : "+updatedSring);
+
+        return updatedSring;
     }
 }
