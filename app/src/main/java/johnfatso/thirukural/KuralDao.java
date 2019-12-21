@@ -20,4 +20,7 @@ public interface KuralDao {
     @Query("Select * FROM table_kural WHERE `verse_index`=:position")
     KuralEntry getVerseNumbered(int position);
 
+    @Query("Select * FROM table_kural WHERE `favourite`=:favourites ")
+    KuralEntry[] getFavouriteKurals(boolean favourites);
+
 }

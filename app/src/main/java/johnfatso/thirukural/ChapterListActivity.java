@@ -8,10 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import java.util.ArrayList;
 
-public class ChapterListActivity extends AppCompatActivity {
+public class ChapterListActivity extends AppCompatActivity implements OnClickListener {
 
     private final static String LOG_TAG = "TAG";
 
@@ -54,7 +55,7 @@ public class ChapterListActivity extends AppCompatActivity {
                 Log.v(LOG_TAG, "retrieval completed");
                 dataSet = toArrayList((ChapterEntry[]) o);
                 Log.v(LOG_TAG, "dataset size :"+dataSet.size());
-                adapter = new ChapterListAdapter(dataSet);
+                adapter = new ChapterListAdapter(dataSet, ChapterListActivity.this::onClick);
                 recyclerView.setAdapter(adapter);
             }
         }.execute();
@@ -68,5 +69,16 @@ public class ChapterListActivity extends AppCompatActivity {
             list.add(entry);
         }
         return list;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int position = recyclerView.getChildLayoutPosition(view);
+
+        Intent intent = new Intent(this, KuralActivity.class);
+        intent.putExtra("CHAPTER", dataSet.get(position).getChapterIndex());
+        intent.putExtra("FAV", false);
+
+        startActivity(intent);
     }
 }
