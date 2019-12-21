@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,8 +30,9 @@ public class ChapterListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter_list);
 
-        if(savedInstanceState != null) palIndex = savedInstanceState.getInt("PAL");
-        else palIndex =2;
+            Intent intent = getIntent();
+            palIndex = intent.getIntExtra("PAL", 1);
+
 
         recyclerView = findViewById(R.id.recycler_chapter_list);
 
@@ -49,11 +51,15 @@ public class ChapterListActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
+                Log.v(LOG_TAG, "retrieval completed");
                 dataSet = toArrayList((ChapterEntry[]) o);
+                Log.v(LOG_TAG, "dataset size :"+dataSet.size());
+                adapter = new ChapterListAdapter(dataSet);
+                recyclerView.setAdapter(adapter);
             }
         }.execute();
 
-        adapter = new ChapterListAdapter(dataSet);
+
     }
 
     ArrayList<ChapterEntry> toArrayList(ChapterEntry[] array){

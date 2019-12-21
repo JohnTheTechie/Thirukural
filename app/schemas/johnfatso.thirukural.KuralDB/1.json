@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9e601c78929dfb8e32d22a229e67dce7",
+    "identityHash": "210d4e73e699eae8dbf9b268488b9f69",
     "entities": [
       {
         "tableName": "table_kural",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`index` INTEGER NOT NULL, `kural` TEXT NOT NULL, `chapter_index` INTEGER NOT NULL, `verse_index` INTEGER NOT NULL, `favourite` INTEGER NOT NULL, PRIMARY KEY(`index`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`index` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `kural` TEXT NOT NULL, `chapter_index` INTEGER NOT NULL, `verse_index` INTEGER NOT NULL, `favourite` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "primaryKey",
@@ -43,7 +43,7 @@
           "columnNames": [
             "index"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -84,7 +84,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9e601c78929dfb8e32d22a229e67dce7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '210d4e73e699eae8dbf9b268488b9f69')"
     ]
   }
 }

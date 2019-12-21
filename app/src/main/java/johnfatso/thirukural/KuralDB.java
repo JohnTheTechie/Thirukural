@@ -84,9 +84,12 @@ public abstract class KuralDB extends RoomDatabase {
             //TODO: implement kural xml parsers and write to DB
             XMLParser parser = new XMLParser();
             try{
-
-                chapterDao.insert( toChapterArray(parser.parseKural(chapterXML, XMLParser.ADHIKARAM)));
-                kuralDao.insert( toKuralArray(parser.parseKural(kuralXML, XMLParser.KURAL)));
+                ChapterEntry[] chapterEntries = toChapterArray(parser.parseKural(chapterXML, XMLParser.ADHIKARAM));
+                KuralEntry[] kuralEntries =  toKuralArray(parser.parseKural(kuralXML, XMLParser.KURAL));
+                Log.v(LOG_TAG, ""+this.getClass().getName()+" | Pushing to start for "+chapterEntries.length+" entries of chapter");
+                chapterDao.insert(chapterEntries);
+                Log.v(LOG_TAG, ""+this.getClass().getName()+" | Pushing to start for "+kuralEntries.length+" entries of kural");
+                kuralDao.insert(kuralEntries);
                 Log.v(LOG_TAG, ""+this.getClass().getName()+" | insert task completed");
             }catch (Exception e){
                 Log.v(LOG_TAG, "Exception thrown Kural DB | "+e.toString());
@@ -98,6 +101,7 @@ public abstract class KuralDB extends RoomDatabase {
 
         ChapterEntry[] toChapterArray(ArrayList<ChapterEntry> list){
             ChapterEntry[] array = new ChapterEntry[list.size()];
+            Log.v(LOG_TAG, ""+this.getClass().getName()+" | conversion to start for "+list.size()+" entries of chapter");
 
             for(int i =0; i<list.size(); i++){
                 array[i] = list.get(i);
@@ -108,7 +112,7 @@ public abstract class KuralDB extends RoomDatabase {
 
         KuralEntry[] toKuralArray(ArrayList<KuralEntry> list){
             KuralEntry[] array = new KuralEntry[list.size()];
-
+            Log.v(LOG_TAG, ""+this.getClass().getName()+" | conversion to start for "+list.size()+" entries of kural");
             for(int i =0; i<list.size(); i++){
                 array[i] = list.get(i);
             }

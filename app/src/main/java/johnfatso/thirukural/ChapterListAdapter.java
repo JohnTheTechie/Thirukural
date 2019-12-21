@@ -1,5 +1,6 @@
 package johnfatso.thirukural;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.ChapterViewHolder> {
+
+    private static final String LOG_TAG = "TAG";
 
     class ChapterViewHolder extends RecyclerView.ViewHolder{
         TextView chapterTitle;
@@ -26,7 +29,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     ArrayList<ChapterEntry> chapterTitleList;
 
     public ChapterListAdapter(ArrayList<ChapterEntry> chapterTitleList) {
-        chapterTitleList = chapterTitleList;
+        this.chapterTitleList = chapterTitleList;
     }
 
 
@@ -36,14 +39,18 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
         View viewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.chapter_list_item, parent, false);
         TextView chapterTitle = viewHolder.findViewById(R.id.text_chapter_name);
         TextView chapterCount = viewHolder.findViewById(R.id.text_chapter_count);
+        Log.v(LOG_TAG, "ViewHolder Created");
         return new ChapterViewHolder(viewHolder, chapterTitle, chapterCount);
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull ChapterViewHolder holder, int position) {
-        holder.chapterTitle.setText(chapterTitleList.get(position).getChapter());
+        String kural = chapterTitleList.get(position).getChapter();
         int index = chapterTitleList.get(position).getChapterIndex();
+
+        Log.v(LOG_TAG, "Binding initiated for chapter entry ("+kural+", "+index+")");
+        holder.chapterTitle.setText(kural);
         holder.chapterIndex.setText(""+index);
     }
 

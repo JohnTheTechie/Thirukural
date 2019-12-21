@@ -28,11 +28,15 @@ public class XMLParser {
     }
 
     private ArrayList readData(XmlPullParser parser, int xmldoc) throws XmlPullParserException, IOException {
-        ArrayList<KuralEntry> list;
-        ArrayList<ChapterEntry> clist;
-        list = new ArrayList<KuralEntry>();
-        clist = new ArrayList<ChapterEntry>();
+
+        ArrayList list = new ArrayList();
+
+        if(xmldoc == KURAL) new ArrayList<KuralEntry>();
+        if(xmldoc == ADHIKARAM) new ArrayList<ChapterEntry>();
+
         Log.v(LOG_TAG, ""+this.getClass().getName()+" | data reading entered");
+
+
 
         parser.require(XmlPullParser.START_TAG, ns, "data");
         while (parser.next() != XmlPullParser.END_TAG){
@@ -44,11 +48,13 @@ public class XMLParser {
                 Log.v(LOG_TAG, ""+this.getClass().getName()+" | kural tag identified");
                 list.add(readKuralEntry(parser));
                 Log.v(LOG_TAG, ""+this.getClass().getName()+" | readData() | item added to list");
+                Log.v(LOG_TAG, ""+this.getClass().getName()+" | readData() | list current size = "+list.size());
             }
             else if(name.equals("adhikaram") && xmldoc == ADHIKARAM){
                 Log.v(LOG_TAG, ""+this.getClass().getName()+" | adhikaramn tag identified");
-                clist.add(readChapterEntry(parser));
+                list.add(readChapterEntry(parser));
                 Log.v(LOG_TAG, ""+this.getClass().getName()+" | readData() | item added to list");
+                Log.v(LOG_TAG, ""+this.getClass().getName()+" | readData() | list current size = "+list.size());
             }
             else {
                 Log.v(LOG_TAG, ""+this.getClass().getName()+" | tag skipping "+parser.getName());
@@ -56,7 +62,7 @@ public class XMLParser {
             }
         }
 
-        return list;
+        return list ;
 
     }
 

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "table_kural")
 public class KuralEntry {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "index")
     private int primaryKey;
 
@@ -25,7 +25,7 @@ public class KuralEntry {
     private boolean favourite;
 
     public KuralEntry(@NonNull String kural, int chapterIndex, int verseIndex, boolean favourite) {
-        this.primaryKey = verseIndex;
+
         this.kural = kural;
         this.chapterIndex = chapterIndex;
         this.verseIndex = verseIndex;
