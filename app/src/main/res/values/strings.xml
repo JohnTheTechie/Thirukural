@@ -11,4 +11,18 @@
     <string name="inbam_topic">Canon of Love</string>
 
     <string name="favourites_topic">Tagged Kurals</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="disclaimer_topic"> Thirukkural </string>
+    <string name="disclaimer_description">The Tirukkural (திருக்குறள், literally Sacred Verses), or
+        shortly the Kural, is a classic Tamil language text consisting of 1,330 couplets or Kurals.
+        The text is divided into three books, each with aphoristic teachings on virtue
+        (aram), wealth (porul) and love (inbam). Considered one of the great works on ethics and morality, it is
+        known for its universality and secular nature</string>
+    <string name="diclaimer_createdby">produced by</string>
+    <string name="diclaimer_corpname">JohnFatso</string>
+    <string name="diclaimer_brand">JJ</string>
 </resources>

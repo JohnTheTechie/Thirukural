@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int INBAM_PAL_INDEX = 3;
 
     Button button_aram, button_porul, button_inbam, button_favourite;
+    ImageView info;
 
     Repository repository;
 
@@ -54,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        info = findViewById(R.id.info);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchInfoScreen(view);
+            }
+        });
+
         repository = new Repository(this.getApplication());
 
         new Repository.DaoAsyncTask(repository.getKuralDao(), repository.getChapterDao()){
@@ -76,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
     void launchKuralListActivity(View view){
         Intent intent= new Intent(this, KuralActivity.class);
         intent.putExtra("FAV", true);
+        startActivity(intent);
+    }
+
+    void launchInfoScreen(View view){
+        Intent intent = new Intent(this, infoActivity.class);
         startActivity(intent);
     }
 }

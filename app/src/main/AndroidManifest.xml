@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KuralActivity"></activity>
+        <activity android:name=".infoActivity"></activity>
+        <activity android:name=".KuralActivity" />
         <activity android:name=".ChapterListActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
